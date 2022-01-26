@@ -4,7 +4,7 @@ import "Structs.wdl"
 
 workflow ShardVcf {
   input {
-	  File vcf
+    File vcf
     String prefix
     Int records_per_shard
     Int? threads = 1
@@ -14,11 +14,11 @@ workflow ShardVcf {
 
 call ScatterVcf {
   input:
-    vcf=vcfs,
+    vcf=vcf,
     records_per_shard=records_per_shard,
     threads=threads,
     sv_pipeline_docker=sv_pipeline_docker,
-    runtime_attr_scatter_override=runtime_attr_override
+    runtime_attr_override=runtime_attr_scatter_override
   }
 
 output {
