@@ -15,6 +15,7 @@ workflow ShardVcf {
 call ScatterVcf {
   input:
     vcf=vcf,
+    prefix=prefix,
     records_per_shard=records_per_shard,
     threads=threads,
     sv_pipeline_docker=sv_pipeline_docker,
