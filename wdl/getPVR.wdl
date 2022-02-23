@@ -2,7 +2,7 @@ version 1.0
 
 import "Structs.wdl"
 
-workflow collectReadCounts {
+workflow getPVR {
 
   #################################################################################
   ####        Required basic arguments 						                      #
