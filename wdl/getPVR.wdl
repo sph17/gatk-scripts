@@ -13,14 +13,23 @@ workflow getPVR {
     File indel_file
     File trio_list
     File mother_cram
+    File mother_crai
     File father_cram
+    File father_crai
     File proband_cram
+    File proband_crai
     File? additional_cram_1
+    File? additional_crai_1
     File? additional_cram_2
+    File? additional_crai_2
     File? additional_cram_3
+    File? additional_crai_3
     File? additional_cram_4
+    File? additional_crai_4
     File? additional_cram_5
+    File? additional_crai_5
     File? additional_cram_6
+    File? additional_crai_6
     String pvr_docker
     String fam_members
 
@@ -43,16 +52,25 @@ workflow getPVR {
       indel_file = indel_file,
       trio_list = trio_list,
       mother_cram = mother_cram,
+      mother_crai = mother_crai,
       father_cram = father_cram,
+      father_crai = father_crai,
       proband_cram = proband_cram,
+      proband_crai = proband_crai,
       pvr_docker = pvr_docker,
       fam_members = fam_members,
       additional_cram_1 = additional_cram_1,
-      additional_cram_2 = additional_cram_2, 
-      additional_cram_3 = additional_cram_3, 
+      additional_crai_1 = additional_crai_1,
+      additional_cram_2 = additional_cram_2,
+      additional_crai_2 = additional_crai_2, 
+      additional_cram_3 = additional_cram_3,
+      additional_crai_3 = additional_crai_3, 
       additional_cram_4 = additional_cram_4,
+      additional_crai_4 = additional_crai_4,
       additional_cram_5 = additional_cram_5,
+      additional_crai_5 = additional_crai_5,
       additional_cram_6 = additional_cram_6,
+      additional_crai_6 = additional_crai_6,
       runtime_attr_override = runtime_attr_getPVR
   }
 
@@ -70,42 +88,27 @@ task calculatePVR {
     File indel_file
     File trio_list
     File mother_cram
+    File mother_crai
     File father_cram
+    File father_crai
     File proband_cram
+    File proband_crai
     File? additional_cram_1
+    File? additional_crai_1
     File? additional_cram_2
+    File? additional_crai_2
     File? additional_cram_3
+    File? additional_crai_3
     File? additional_cram_4
+    File? additional_crai_4
     File? additional_cram_5
+    File? additional_crai_5
     File? additional_cram_6
+    File? additional_crai_6
     String pvr_docker
     String fam_members
     RuntimeAttr? runtime_attr_override
   }
-
-  File mother_crai = mother_cram + ".crai"
-  File father_crai = father_cram + ".crai"
-  File proband_crai = proband_cram + ".crai"
-
-  if(additional_cram_1){
-    additional_crai_1 = additional_cram_1 + ".crai"
-  }
-  if(additional_cram_2){
-    additional_crai_2 = additional_cram_2 + ".crai"
-  }
-  if(additional_cram_3){
-    additional_crai_3 = additional_cram_3 + ".crai"
-  }
-  if(additional_cram_4){
-    additional_crai_4 = additional_cram_4 + ".crai"
-  }
-  if(additional_cram_5){
-    additional_crai_5 = additional_cram_5 + ".crai"
-  }
-  if(additional_cram_6){
-    additional_crai_6 = additional_cram_6 + ".crai"
-  }
-
 
   # Runtime parameters adapted from gatk-sv "CollectCoverage.wdl"
   Int num_cpu = 4
