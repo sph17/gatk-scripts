@@ -83,6 +83,30 @@ task calculatePVR {
     RuntimeAttr? runtime_attr_override
   }
 
+  File mother_crai = mother_cram + ".crai"
+  File father_crai = father_cram + ".crai"
+  File proband_crai = proband_cram + ".crai"
+
+  if(additional_cram_1){
+    additional_crai_1 = additional_cram_1 + ".crai"
+  }
+  if(additional_cram_2){
+    additional_crai_2 = additional_cram_2 + ".crai"
+  }
+  if(additional_cram_3){
+    additional_crai_3 = additional_cram_3 + ".crai"
+  }
+  if(additional_cram_4){
+    additional_crai_4 = additional_cram_4 + ".crai"
+  }
+  if(additional_cram_5){
+    additional_crai_5 = additional_cram_5 + ".crai"
+  }
+  if(additional_cram_6){
+    additional_crai_6 = additional_cram_6 + ".crai"
+  }
+
+
   # Runtime parameters adapted from gatk-sv "CollectCoverage.wdl"
   Int num_cpu = 4
   Int mem_size_gb = 16
@@ -99,12 +123,13 @@ task calculatePVR {
 
   RuntimeAttr runtime_attr = select_first([runtime_attr_override, default_attr])
 
+
+
   String fam_id = basename(indel_file, ".txt")
   String pvr_filename = "${fam_id}_with_PVR.txt"
-  String indel_basename = basename(indel_file, ".txt")
   String pvr_redo = "${fam_id}_redo.txt"
-
-
+  
+  String cram_dir = "/cromwell_root/fc-5e80ede2-9204-4178-ba7a-10d58a9fd229/mssng/crams/"
 
     
   command <<<
